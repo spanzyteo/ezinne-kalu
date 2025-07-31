@@ -32,7 +32,7 @@ const PostId = () => {
       } catch (error: any) {
         const message =
           error.response?.data?.message ||
-          "An error occurred while fetching posts";
+          "An error occurred while fetching post";
         toast.error(message);
       }
     };

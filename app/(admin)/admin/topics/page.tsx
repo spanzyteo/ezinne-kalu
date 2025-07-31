@@ -70,8 +70,8 @@ const Topic = () => {
         <div className="flex items-center justify-between mt-4">
           <h1 className="font-semibold sm:text-xl text-lg">Topic List</h1>
           <button
-            onClick={() => router.push("/admin/add-new-topic")}
-            className="px-7 py-2 bg-[#fab702] rounded-[5px] text-white text-[13px] font-semibold hover:text-black hover:opacity-75 active:opacity-60 transition-all duration-500 ease-in-out"
+            onClick={() => router.push("/admin/add-new-topics")}
+            className="px-7 py-2 bg-[#fab702] rounded-[5px] text-white text-[13px] font-semibold hover:text-black hover:opacity-75 active:opacity-60 transition-all duration-500 ease-in-out cursor-pointer"
           >
             Add Topics
           </button>
