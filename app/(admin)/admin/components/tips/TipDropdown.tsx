@@ -21,7 +21,7 @@ const TipDropdown = () => {
     <>
       <div
         onClick={() => handlePostClick()}
-        className="flex items-center justify-between w-[230px]"
+        className="flex items-center justify-between w-[230px] cursor-pointer"
       >
         <div className="flex flex-row items-center justify-between gap-8">
           <BsBag className="h-[20px] w-[20px]" />

@@ -15,11 +15,11 @@ const Header = () => {
       <div className="flex items-center">
         <IoMdMenu
           onClick={() => handleOPenSidebar()}
-          className="lg:hidden block h-[40px] w-[40px] ml-4 mt-1"
+          className="lg:hidden block h-[40px] w-[40px] ml-4 mt-1 cursor-pointer"
         />
-        {/* <h1 className="text-2xl ml-4 lg:hidden block font-semibold">
+        <h1 className="text-2xl ml-4 lg:hidden block font-semibold">
           Ezinne Kalu
-        </h1> */}
+        </h1>
         <div className="w-[408px] relative ml-7 h-[46px] md:block hidden">
           <input
             type="text"
@@ -33,7 +33,13 @@ const Header = () => {
       </div>
       <div className="flex items-center mr-4 gap-4">
         <IoIosSearch className="h-[30px] w-[30px] md:hidden" />
-        <Image src={'/profile.jpg'} alt='profile' height={50} width={50} className='h-[50px] w-[50px] rounded-full object-cover'/>
+        <Image
+          src={"/profile.jpg"}
+          alt="profile"
+          height={50}
+          width={50}
+          className="h-[50px] w-[50px] rounded-full object-cover"
+        />
       </div>
     </div>
   );
