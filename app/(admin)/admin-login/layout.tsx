@@ -2,7 +2,7 @@ import "../../globals.css";
 import type { Metadata } from "next";
 import ClientLayout from "./component/ClientLayout";
 export const metadata: Metadata = {
-  title: "My portfolio",
+  title: "Ezinne Kalu | Admin",
   description: "Login to the admin dashboard",
 };
 

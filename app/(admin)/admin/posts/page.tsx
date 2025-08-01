@@ -148,11 +148,11 @@ const Posts = () => {
                     <td className="lg:px-16 px-8 py-3">
                       <div className="w-[80px] h-[80px] flex items-center justify-center rounded-xl">
                         <Image
-                          width={60}
-                          height={60}
+                          width={120}
+                          height={120}
                           src={item.image}
                           alt="img"
-                          className="h-[60px] w-[60px] object-contain"
+                          className="h-[120px] w-[120px] object-contain"
                           unoptimized
                         />
                       </div>
