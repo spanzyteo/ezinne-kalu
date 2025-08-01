@@ -158,7 +158,9 @@ const Posts = () => {
                       </div>
                     </td>
                     <td className="lg:px-16 px-8 py-3">
-                      <h1 className="text-md text-[#4A5568]">{item.content}</h1>
+                      <h1 className="text-md text-[#4A5568]">
+                        {item.content.split(" ").slice(0, 40).join(" ") + "..."}
+                      </h1>
                     </td>
                     <td className="lg:px-16 px-8 py-3">
                       <h1 className="text-md text-[#4A5568]">

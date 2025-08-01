@@ -67,7 +67,7 @@ const TopicId = () => {
                   className="rounded-[5px] w-[400px] h-[266px] object-cover"
                   alt=""
                 />
-                <h1 className="font-semibold text-[16px] lg:text-[20px] leading-[40px] lg:leading-[50px] text-[#515151]">
+                <h1 className="font-semibold text-[16px] lg:text-[20px] lg:leading-[50px] text-[#515151]">
                   {topic.description}
                 </h1>
                 {topic.posts.length > 0 && (
