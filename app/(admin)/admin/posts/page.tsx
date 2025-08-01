@@ -152,7 +152,7 @@ const Posts = () => {
                           height={120}
                           src={item.image}
                           alt="img"
-                          className="h-[120px] w-[120px] object-contain"
+                          className="h-[120px] w-[120px] object-cover"
                           unoptimized
                         />
                       </div>
