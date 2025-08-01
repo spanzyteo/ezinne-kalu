@@ -1,7 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import axios from "axios";
 import { toast } from "react-toastify";
 

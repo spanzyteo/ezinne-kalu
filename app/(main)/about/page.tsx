@@ -5,7 +5,7 @@ const page = () => {
   return (
     <div className="lg:ml-[360px] lg:py-16 px-10 lg:px-16">
       <h1 className="text-[30px] font-semibold">whoami</h1>
-      <Image height={337} width={450} src="/profile.jpg" alt="" className="object-cover max-w-[450px] h-[337.5px] lg:max-h-[337.5px] rounded-lg mt-8" />
+      <Image height={337} width={450} src="/profile.jpg" alt="" className="object-cover w-[400px] md:max-w-[450px] h-[337.5px] lg:max-h-[337.5px] rounded-lg mt-8" />
       <div className="flex flex-col gap-4 mt-8">
         <h1 className="font-semibold text-[20px]">Ezinne Kalu</h1>
         <p className="font-extralight text-[18px] leading-relaxed">

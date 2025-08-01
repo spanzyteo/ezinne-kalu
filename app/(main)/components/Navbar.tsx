@@ -9,15 +9,15 @@ const Navbar = () => {
       <div className="flex flex-col items-center lg:px-10 py-8 w-full border-b">
         <Image
           width={120}
-          height={120}
+          height={180}
           src={"/profile.jpg"}
           alt="profile"
           className="h-[120px] lg:h-[180px] w-[120px] lg:w-[180px] rounded-full border-3 border-black object-cover"
         />
-        <h1 className="intel-one-mono text-[40px] lg:text-[50px] leading-[62.5px] lg:text-left">
+        <Link href={'/'} className="intel-one-mono text-[40px] lg:text-[50px] leading-[62.5px] lg:text-left">
           Ezinne Kalu
-        </h1>
-        <p className="courier-font text-[22px] font-thin leading-[32px]">
+        </Link>
+        <p className="courier-font text-[22px] font-thin leading-[32px] ml-4 sm:ml-0">
           My thoughts on hacking, ai, faith, and more.
         </p>
       </div>
