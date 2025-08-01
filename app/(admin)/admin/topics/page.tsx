@@ -144,10 +144,10 @@ const Topic = () => {
                       <div className="w-[80px] h-[80px] flex items-center justify-center rounded-xl">
                         <Image
                           width={120}
-                          height={100}
+                          height={80}
                           src={item.image}
                           alt="img"
-                          className="h-[100px] w-[120px] object-contain"
+                          className="h-[80px] w-[120px] object-cover"
                           unoptimized
                         />
                       </div>

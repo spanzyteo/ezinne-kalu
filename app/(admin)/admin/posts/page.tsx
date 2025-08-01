@@ -149,17 +149,17 @@ const Posts = () => {
                       <div className="w-[80px] h-[80px] flex items-center justify-center rounded-xl">
                         <Image
                           width={120}
-                          height={120}
+                          height={80}
                           src={item.image}
                           alt="img"
-                          className="h-[120px] w-[120px] object-cover"
+                          className="h-[80px] w-[120px] object-cover"
                           unoptimized
                         />
                       </div>
                     </td>
                     <td className="lg:px-16 px-8 py-3">
                       <h1 className="text-md text-[#4A5568]">
-                        {item.content.split(" ").slice(0, 40).join(" ") + "..."}
+                        {item.content.split(" ").slice(0, 25).join(" ") + "..."}
                       </h1>
                     </td>
                     <td className="lg:px-16 px-8 py-3">
