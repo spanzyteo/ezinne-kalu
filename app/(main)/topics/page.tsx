@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { ThreeCircles } from "react-loader-spinner";
+import { useAppSelector } from "../store/hooks";
 
 type TopicsType = {
   id: string;
@@ -13,7 +13,7 @@ type TopicsType = {
 };
 
 const Topic = () => {
-  const router = useRouter();
+  const darkMode = useAppSelector((state) => state.darkMode.darkMode);
   const [topics, setTopics] = useState<TopicsType[]>([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -44,14 +44,20 @@ const Topic = () => {
   }, [search, page]);
   return (
     <div className="lg:ml-[360px] lg:py-16 px-10 lg:px-16">
-      <h1 className="font-semibold text-[30px]">topics</h1>
+      <h1
+        className={`font-semibold text-[30px] ${
+          darkMode ? "text-white" : ""
+        }`}
+      >
+        topics
+      </h1>
       {loading ? (
         <div className="ml-10">
           <ThreeCircles
             visible={true}
             height="50"
             width="50"
-            color="#000000"
+            color={`${darkMode ? "#FFFFFF" : "#000000"}`}
             ariaLabel="three-circles-loading"
             wrapperStyle={{}}
             wrapperClass=""
@@ -61,7 +67,12 @@ const Topic = () => {
         <>
           {topics.map((item) => (
             <div key={item.id} className="flex flex-col mt-2">
-              <Link href={`/topics/${item.id}`} className="underline hover:font-semibold text-[16px] md:text-[20px]">
+              <Link
+                href={`/topics/${item.id}`}
+                className={`underline hover:font-semibold text-[16px] md:text-[20px] ${
+                  darkMode ? "text-white" : ""
+                }`}
+              >
                 {item.name}
               </Link>
             </div>

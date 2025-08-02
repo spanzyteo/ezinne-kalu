@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { ThreeCircles } from "react-loader-spinner";
+import { useAppSelector } from "../store/hooks";
 
 type PostsType = {
   id: string;
@@ -18,6 +19,7 @@ type PostsType = {
 };
 
 const Post = () => {
+  const darkMode = useAppSelector((state) => state.darkMode.darkMode);
   const router = useRouter();
   const [posts, setPosts] = useState<PostsType[]>([]);
   const [search, setSearch] = useState("");
@@ -55,7 +57,7 @@ const Post = () => {
             visible={true}
             height="50"
             width="50"
-            color="#000000"
+            color={`${darkMode ? "#FFFFFF" : "#000000"}`}
             ariaLabel="three-circles-loading"
             wrapperStyle={{}}
             wrapperClass=""
@@ -64,38 +66,53 @@ const Post = () => {
       ) : (
         <>
           {posts.map((item) => (
-            <div key={item.id} className="flex flex-col pb-10 pt-4 border-b">
+            <div
+              key={item.id}
+              className={`flex flex-col pb-10 pt-4 border-b ${
+                darkMode ? "border-b-white" : ""
+              }`}
+            >
               <div className="px-10 lg:px-16 flex flex-col gap-3">
                 <Link
                   href={`/posts/${item.id}`}
-                  className="font-semibold text-[32px] lg:text-[40px] leading-[40px] lg:leading-[50px] text-[#313131] hover:underline hover:font-bold"
+                  className={`font-semibold text-[32px] lg:text-[40px] leading-[40px] lg:leading-[50px] hover:underline hover:font-bold ${
+                    darkMode ? "text-white" : "text-[#313131]"
+                  }`}
                 >
                   {item.title}
                 </Link>
                 <div className="flex items-center gap-3 text-[16px] md:text-[20px] leading-[24px] lg:leading-[30px]">
-                  <h2 className="text-[#767676]">
+                  <h2
+                    className={`${darkMode ? "text-white" : "text-[#767676]"}`}
+                  >
                     {new Date(item.createdAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
                     })}
                   </h2>
-                  <p>•</p>
-                  <h2>{item.topic.name}</h2>
+                  <p className={`${darkMode ? "text-white" : ""}`}>•</p>
+                  <h2 className={`${darkMode ? "text-white" : ""}`}>
+                    {item.topic.name}
+                  </h2>
                 </div>
                 <img
                   src={item.image}
                   className="rounded-[5px] w-[400px] h-[266px] object-cover"
                   alt=""
                 />
-                <div className="prose max-w-none">
+                <div
+                  className={`prose max-w-none ${darkMode ? "text-white" : ""}`}
+                >
                   <ReactMarkdown>
                     {item.content.split(" ").slice(0, 40).join(" ") + "..."}
                   </ReactMarkdown>
                 </div>
                 <Link
                   href={`/posts/${item.id}`}
-                  className="hover:underline text-[16px] mt-2"
+                  className={`hover:underline text-[16px] mt-2 ${
+                    darkMode ? "text-white" : ""
+                  }`}
                 >
                   More...
                 </Link>
