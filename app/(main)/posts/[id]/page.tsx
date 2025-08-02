@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { ThreeCircles } from "react-loader-spinner";
+import { useAppSelector } from "../../store/hooks";
 
 type PostsType = {
   id: number;
@@ -19,6 +20,7 @@ type PostsType = {
 };
 
 const PostId = () => {
+  const darkMode = useAppSelector((state) => state.darkMode.darkMode);
   const { id: postId } = useParams();
   const [post, setPost] = useState<PostsType | null>(null);
   const [similarPosts, setSimilarPosts] = useState<PostsType[]>([]);
@@ -85,7 +87,7 @@ const PostId = () => {
             visible={true}
             height="50"
             width="50"
-            color="#000000"
+            color={`${darkMode ? "#FFFFFF" : "#000000"}`}
             ariaLabel="three-circles-loading"
             wrapperStyle={{}}
             wrapperClass=""
@@ -97,11 +99,17 @@ const PostId = () => {
             <div className="px-10 lg:px-16 flex flex-col gap-8">
               {/* Main blog post */}
               <div className="flex flex-col gap-3">
-                <h1 className="font-semibold text-[32px] lg:text-[40px] leading-[40px] lg:leading-[50px] text-[#313131]">
+                <h1
+                  className={`font-semibold text-[32px] lg:text-[40px] leading-[40px] lg:leading-[50px] ${
+                    darkMode ? "text-white" : "text-[#313131]"
+                  }`}
+                >
                   {post.title}
                 </h1>
                 <div className="flex items-center gap-3 text-[16px] md:text-[20px] leading-[24px] lg:leading-[30px]">
-                  <h2 className="text-[#767676]">
+                  <h2
+                    className={` ${darkMode ? "text-white" : "text-[#767676]"}`}
+                  >
                     {new Date(post.createdAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
@@ -109,14 +117,18 @@ const PostId = () => {
                     })}
                   </h2>
                   <p>•</p>
-                  <h2>{post.topic.name}</h2>
+                  <h2 className={`${darkMode ? "text-white" : ""}`}>
+                    {post.topic.name}
+                  </h2>
                 </div>
                 <img
                   src={post.image}
                   className="rounded-[5px] w-[400px] h-[266px] object-cover"
                   alt=""
                 />
-                <div className="prose max-w-none">
+                <div
+                  className={`prose max-w-none ${darkMode ? "text-white" : ""}`}
+                >
                   <ReactMarkdown>{post.content}</ReactMarkdown>
                 </div>
               </div>
@@ -124,24 +136,46 @@ const PostId = () => {
               {/* Similar Posts */}
               {similarPosts.length > 0 && (
                 <div className="mt-12">
-                  <h2 className="text-2xl font-semibold mb-6">Similar Blogs</h2>
-                  <div className="grid md:grid-cols-3 gap-8">
+                  <h2
+                    className={`text-2xl font-semibold mb-6 ${
+                      darkMode ? "text-white" : ""
+                    }`}
+                  >
+                    Similar Blogs
+                  </h2>
+                  <div className={`grid md:grid-cols-3 gap-8 `}>
                     {similarPosts.map((similar) => (
                       <Link href={`/posts/${similar.id}`} key={similar.id}>
-                        <div className="rounded-lg p-4 shadow-sm hover:shadow-md transition h-full">
+                        <div
+                          className={`rounded-lg p-4 shadow-sm hover:shadow-md transition h-full ${
+                            darkMode ? "bg-gray-900" : ""
+                          }`}
+                        >
                           <img
                             src={similar.image}
                             className="w-full h-[200px] object-cover rounded-md mb-4"
                             alt=""
                           />
-                          <h3 className="text-lg font-bold mb-2">
+                          <h3
+                            className={`text-lg font-bold mb-2 ${
+                              darkMode ? "text-white" : ""
+                            }`}
+                          >
                             {similar.title}
                           </h3>
-                          <p className="text-sm text-gray-600">
+                          <p
+                            className={`text-sm ${
+                              darkMode ? "text-white" : "text-gray-600"
+                            }`}
+                          >
                             {similar.content.split(" ").slice(0, 20).join(" ")}
                             ...
                           </p>
-                          <p className="mt-2 hover:underline text-sm">
+                          <p
+                            className={`mt-2 hover:underline text-sm ${
+                              darkMode ? "text-white" : ""
+                            }`}
+                          >
                             Read More
                           </p>
                         </div>
