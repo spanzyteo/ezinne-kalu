@@ -86,6 +86,17 @@ const Navbar = () => {
         >
           topics
         </Link>
+        <Link
+          href={
+            "https://ezinnekalu.substack.com/?r=36spyu&utm_campaign=pub-share-checklist"
+          }
+          target="_blank"
+          className={`text-[20px] lg:text-left mt-2 py-2 px-3 rounded-lg hover:opacity-85 transition-all duration-500 ease-in-out ${
+            darkMode ? "text-black bg-white" : "text-white bg-black"
+          }`}
+        >
+          Subscribe to my newsletter
+        </Link>
       </div>
       <div className="flex flex-col lg:px-10 w-full py-6 gap-2">
         <div className="flex gap-3 justify-center lg:justify-normal">

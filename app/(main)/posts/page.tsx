@@ -20,7 +20,6 @@ type PostsType = {
 
 const Post = () => {
   const darkMode = useAppSelector((state) => state.darkMode.darkMode);
-  const router = useRouter();
   const [posts, setPosts] = useState<PostsType[]>([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);

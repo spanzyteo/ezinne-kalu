@@ -6,6 +6,9 @@ import ClientProvider from "./components/ClientProvider";
 export const metadata: Metadata = {
   title: "Ezinne Kalu",
   description: "My Portfolio",
+  icons: {
+    icon: "/favicon.png"
+  }
 };
 
 export default function RootLayout({
