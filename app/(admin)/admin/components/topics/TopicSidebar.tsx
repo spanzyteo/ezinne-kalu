@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { BsBag } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { toggleTopics } from "../../store/sidebarSlice";
+import { MdTopic } from "react-icons/md";
 
 const TopicSidebarSection = () => {
   const sections = useAppSelector((state) => state.sidebar);
@@ -19,7 +19,7 @@ const TopicSidebarSection = () => {
         className="flex items-center justify-between w-[230px] cursor-pointer"
       >
         <div className="flex flex-row items-center justify-between gap-8">
-          <BsBag className="h-[20px] w-[20px]" />
+          <MdTopic className="h-[20px] w-[20px]" />
           <h1>Topics</h1>
         </div>
         <div className="">

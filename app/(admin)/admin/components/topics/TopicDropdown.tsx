@@ -2,9 +2,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { closeSidebar } from "../../store/mobileSidebarSlice";
 import { toggleTopics } from "../../store/sidebarSlice";
-import { BsBag } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
+import { MdTopic } from "react-icons/md";
 
 const TopicDropdown = () => {
   const sections = useAppSelector((state) => state.sidebar);
@@ -24,7 +24,7 @@ const TopicDropdown = () => {
         className="flex items-center justify-between w-[230px] cursor-pointer"
       >
         <div className="flex flex-row items-center justify-between gap-8">
-          <BsBag className="h-[20px] w-[20px]" />
+          <MdTopic className="h-[20px] w-[20px]" />
           <h1>Topics</h1>
         </div>
         <div className="">

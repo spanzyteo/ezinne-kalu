@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { BsBag } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { toggleTips } from "../../store/sidebarSlice";
+import { RiChat3Line } from "react-icons/ri";
 
 const TipSidebarSection = () => {
   const sections = useAppSelector((state) => state.sidebar);
@@ -19,7 +19,7 @@ const TipSidebarSection = () => {
         className="flex items-center justify-between w-[230px] cursor-pointer"
       >
         <div className="flex flex-row items-center justify-between gap-8">
-          <BsBag className="h-[20px] w-[20px]" />
+          <RiChat3Line className="h-[20px] w-[20px]" />
           <h1>Tips</h1>
         </div>
         <div className="">
