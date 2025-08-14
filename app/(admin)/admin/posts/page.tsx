@@ -34,7 +34,9 @@ const Posts = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://ezinne-api.onrender.com/api/v1/posts?search=${search}&page=${page}`
+          `https://ezinne-api.onrender.com/api/v1/posts?search=${search}&page=${page}`, {
+            withCredentials: true,
+          }
         );
         const { data, totalPages: pages } = response.data;
         setPosts(data);
@@ -54,16 +56,17 @@ const Posts = () => {
 
   const handleDelete = async (id: any) => {
     try {
-      const token = Cookies.get("adminToken");
-      if (!token) {
-        toast.error("No token found");
-        return;
-      }
+      // const token = Cookies.get("adminToken");
+      // if (!token) {
+      //   toast.error("No token found");
+      //   return;
+      // }
 
       await axios.delete(`https://ezinne-api.onrender.com/api/v1/posts/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
+        withCredentials: true,
       });
 
       setPosts((prev) => prev.filter((post) => post.id !== id));

@@ -19,6 +19,14 @@ const AdminLogin = () =>{
     }
   }, [key])
 
+  const checkCookies = () => {
+    console.log("🍪 All cookies:", document.cookie);
+    console.log(
+      "🍪 Parsed cookies:",
+      document.cookie.split(";").map((c) => c.trim())
+    );
+  };
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -33,16 +41,22 @@ const AdminLogin = () =>{
         {
           email,
           password
-        }
+        },
+        { withCredentials: true }
       );
       if (response.status === 200) {
-        const token = response.data.token
-        Cookies.set('isAdmin', 'true')
-        Cookies.set('adminToken', token, {expires: 1})
+        console.log("🍪 LOGIN SUCCESS - Response headers:", response.headers);
+        console.log("🍪 Set-Cookie header:", response.headers["set-cookie"]);
+        console.log("🍪 Response data:", response.data);
 
-
+        // Check if cookies are actually in the browser
+        console.log("🍪 All browser cookies:", document.cookie);
+        checkCookies()
         toast.success("Login successful!");
-        router.push('/admin')
+        setTimeout(() => {
+          console.log("🍪 Cookies after timeout:", document.cookie);
+          router.push("/admin");
+        }, 1000);
       }
     } catch (error: any) {
       const message = error.response?.data?.message || "An error occurred while logging in"
@@ -54,7 +68,6 @@ const AdminLogin = () =>{
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center justify-center mx-auto gap-6">
-      {/* <h1 className="text-7xl font-bold text-gray-700">Ezinne Kalu</h1> */}
 
       <Image width={150} height={150} alt='profile' src={'/profile.jpg'} className='h-[150px] w-[150px] object-cover rounded-full'/>
 

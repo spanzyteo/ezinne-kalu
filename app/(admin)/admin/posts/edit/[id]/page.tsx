@@ -38,8 +38,12 @@ const EditPost = () => {
     const fetchPostAndTopic = async () => {
       try {
         const [postRes, topicRes] = await Promise.all([
-          axios.get(`https://ezinne-api.onrender.com/api/v1/posts/${id}`),
-          axios.get("https://ezinne-api.onrender.com/api/v1/topics"),
+          axios.get(`https://ezinne-api.onrender.com/api/v1/posts/${id}`, {
+            withCredentials: true,
+          }),
+          axios.get("https://ezinne-api.onrender.com/api/v1/topics", {
+            withCredentials: true,
+          }),
         ]);
 
         const { data } = postRes.data;
@@ -91,19 +95,13 @@ const EditPost = () => {
     }
 
     try {
-      const token = Cookies.get("adminToken");
-      if (!token) {
-        toast.error("No token found");
-        return;
-      }
-
       const response = await axios.put(
         `https://ezinne-api.onrender.com/api/v1/posts/${id}`,
         formData,
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
           },
         }
       );
