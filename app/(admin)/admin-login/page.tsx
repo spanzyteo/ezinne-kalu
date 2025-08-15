@@ -54,8 +54,8 @@ const AdminLogin = () =>{
         checkCookies()
         toast.success("Login successful!");
          setTimeout(() => {
-           router.push("/admin");
-         }, 1500);
+           window.location.href = "/admin"
+         }, 3000);
       }
     } catch (error: any) {
       const message = error.response?.data?.message || "An error occurred while logging in"
