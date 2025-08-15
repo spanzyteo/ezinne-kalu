@@ -53,10 +53,9 @@ const AdminLogin = () =>{
         console.log("🍪 All browser cookies:", document.cookie);
         checkCookies()
         toast.success("Login successful!");
-        setTimeout(() => {
-          console.log("🍪 Cookies after timeout:", document.cookie);
-          router.push("/admin");
-        }, 1000);
+         setTimeout(() => {
+           router.push("/admin");
+         }, 1500);
       }
     } catch (error: any) {
       const message = error.response?.data?.message || "An error occurred while logging in"
