@@ -45,10 +45,6 @@ const EditTipId = () => {
 
     try {
       const token = Cookies.get("adminToken");
-      if (!token) {
-        toast.error("No token found");
-        return;
-      }
 
       const response = await axios.put(
         `https://ezinne-api.onrender.com/api/v1/tips/${id}`,
@@ -56,8 +52,8 @@ const EditTipId = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
           },
+          withCredentials: true,
         }
       );
 

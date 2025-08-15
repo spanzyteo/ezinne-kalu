@@ -20,6 +20,8 @@ export async function middleware(request: NextRequest) {
   //Protect /admin and subroutes
   if (pathname.startsWith("/admin")) {
     const token = request.cookies.get("token")?.value;
+
+    console.log("Token found in middleware:", !!token);
     // const headerToken = request.headers.get("authorization")?.replace("Bearer ", "");
 
     // const token = cookieToken || headerToken;
@@ -30,11 +32,6 @@ export async function middleware(request: NextRequest) {
       console.log("No token - redirecting to 404");
       return NextResponse.rewrite(new URL("/not-found", request.url));
     }
-
-    // ✅ TEMPORARY: Just check if token exists, don't verify with backend
-    // TODO: Add proper verification once /verify endpoint is ready
-    console.log("Token exists - allowing access");
-    return NextResponse.next();
   }
 
   return NextResponse.next();

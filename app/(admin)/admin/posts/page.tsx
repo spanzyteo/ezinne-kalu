@@ -34,7 +34,8 @@ const Posts = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://ezinne-api.onrender.com/api/v1/posts?search=${search}&page=${page}`, {
+          `https://ezinne-api.onrender.com/api/v1/posts?search=${search}&page=${page}`,
+          {
             withCredentials: true,
           }
         );
@@ -56,16 +57,7 @@ const Posts = () => {
 
   const handleDelete = async (id: any) => {
     try {
-      // const token = Cookies.get("adminToken");
-      // if (!token) {
-      //   toast.error("No token found");
-      //   return;
-      // }
-
       await axios.delete(`https://ezinne-api.onrender.com/api/v1/posts/${id}`, {
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
         withCredentials: true,
       });
 
@@ -162,7 +154,7 @@ const Posts = () => {
                     </td>
                     <td className="lg:px-16 px-8 py-3">
                       <h1 className="text-md text-[#4A5568]">
-                        {item.content.split(" ").slice(0, 25).join(" ") + "..."}
+                        {item.content.split(" ").slice(0, 15).join(" ") + "..."}
                       </h1>
                     </td>
                     <td className="lg:px-16 px-8 py-3">
@@ -180,7 +172,7 @@ const Posts = () => {
                         {item.topic.name}
                       </h1>
                     </td>
-                    <td className="lg:px-16 px-8 py-3 flex mt-9 gap-3">
+                    <td className="lg:px-16 px-8 flex py-16 gap-3">
                       <Link href={`/admin/posts/${item.id}`}>
                         <MdOutlineRemoveRedEye className="h-[20px] w-[20px] text-purple-400" />
                       </Link>

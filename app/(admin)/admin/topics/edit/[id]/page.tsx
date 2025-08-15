@@ -77,10 +77,6 @@ const EditTopicId = () => {
 
     try {
       const token = Cookies.get("adminToken");
-      if (!token) {
-        toast.error("No token found");
-        return;
-      }
 
       const response = await axios.put(
         `https://ezinne-api.onrender.com/api/v1/topics/${id}`,
@@ -88,8 +84,8 @@ const EditTopicId = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
           },
+          withCredentials: true,
         }
       );
 

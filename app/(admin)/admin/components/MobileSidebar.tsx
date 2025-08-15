@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { motion, AnimatePresence } from "framer-motion";
 import { closeSidebar } from "../store/mobileSidebarSlice";
@@ -8,14 +8,49 @@ import { MdSpaceDashboard } from "react-icons/md";
 import PostDropdown from "./posts/PostDropdown";
 import TopicDropdown from "./topics/TopicDropdown";
 import TipDropdown from "./tips/TipDropdown";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { LuLogOut } from "react-icons/lu";
 
 const MobileSidebar = () => {
   const dispatch = useAppDispatch();
   const sidebar = useAppSelector((state) => state.mobileSidebar.mobileSidebar);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleCloseSidebar = () => {
     dispatch(closeSidebar());
     console.log("sidebar closed");
+  };
+
+  const handleLogout = async () => {
+    setLoading(true);
+
+    try {
+      const response = await axios.post(
+        "/api/auth/logout",
+        {},
+        { withCredentials: true }
+      );
+
+      const data = await response.data;
+
+      if (response.status === 200 && data.success) {
+        toast.success("Logged out successfully");
+        localStorage.removeItem("adminToken");
+        sessionStorage.removeItem("adminToken");
+
+        router.push("/");
+        router.refresh();
+      } else {
+        toast.error(data.message || "Logout failed");
+      }
+    } catch (error: any) {
+      toast.error(error.message || "An error occurred during logout");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,6 +84,13 @@ const MobileSidebar = () => {
             <PostDropdown />
             <TopicDropdown />
             <TipDropdown />
+            <button
+              className="flex items-center gap-8 cursor-pointer w-[230px]"
+              onClick={handleLogout}
+            >
+              <LuLogOut className="h-[20px] w-[20px]" />
+              <h1>Logout</h1>
+            </button>
           </div>
         </motion.div>
       )}

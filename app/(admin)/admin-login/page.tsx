@@ -37,25 +37,23 @@ const AdminLogin = () =>{
 
     try {
       const response = await axios.post(
-        "https://ezinne-api.onrender.com/api/auth/login",
+        "/api/auth/login",
         {
           email,
           password
         },
         { withCredentials: true }
       );
-      if (response.status === 200) {
-        console.log("🍪 LOGIN SUCCESS - Response headers:", response.headers);
-        console.log("🍪 Set-Cookie header:", response.headers["set-cookie"]);
-        console.log("🍪 Response data:", response.data);
 
-        // Check if cookies are actually in the browser
-        console.log("🍪 All browser cookies:", document.cookie);
-        checkCookies()
+      const data = response.data;
+
+      if (response.status === 200) {
+        console.log("Login success nia NEXT.js API")
         toast.success("Login successful!");
-         setTimeout(() => {
-           window.location.href = "/admin"
-         }, 3000);
+        router.push("/admin")
+        router.refresh()
+      } else {
+        toast.error(data.message || 'Login failed')
       }
     } catch (error: any) {
       const message = error.response?.data?.message || "An error occurred while logging in"

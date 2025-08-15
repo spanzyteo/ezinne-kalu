@@ -32,20 +32,14 @@ const AddNewTopic = () => {
     if (image) formData.append("image", image);
 
     try {
-      const token = Cookies.get("adminToken");
-
-      if (!token) {
-        toast.error("No token found");
-        return;
-      }
       const response = await axios.post(
         "https://ezinne-api.onrender.com/api/v1/topics",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
           },
+          withCredentials: true
         }
       );
 

@@ -50,18 +50,10 @@ const Topic = () => {
 
   const handleDelete = async (id: any) => {
     try {
-      const token = Cookies.get("adminToken");
-      if (!token) {
-        toast.error("No token found");
-        return;
-      }
-
       await axios.delete(
         `https://ezinne-api.onrender.com/api/v1/topics/${id}`,
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          withCredentials: true,
         }
       );
 
